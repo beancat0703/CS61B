@@ -66,33 +66,41 @@ public class ArrayDeque<Item> {
     }
 
     public Item removeFirst() {
+        if (size == 0) {
+            return null;
+        }
         Item removeItem;
         if (nextFirst == items.length - 1) {
             removeItem = items[0];
+            nextFirst = 0;
         }
         else {
             removeItem = items[nextFirst + 1];
+            nextFirst += 1;
         }
-        nextFirst += 1;
         size -= 1;
         return removeItem;
     }
 
     public Item removeLast() {
+        if (size == 0) {
+            return null;
+        }
         Item removeItem;
         if (nextLast == 0) {
             removeItem = items[items.length - 1];
+            nextLast = items.length - 1;
         }
         else {
             removeItem = items[nextLast - 1];
+            nextLast -= 1;
         }
-        nextLast -= 1;
         size -= 1;
         return removeItem;
     }
 
     public Item get(int index) {
-        if (index < 0 || index >= items.length) {
+        if (index < 0 || index >= size) {
             return null;
         }
         int start;
