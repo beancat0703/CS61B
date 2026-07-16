@@ -92,6 +92,9 @@ public class ArrayDeque<Item> {
     }
 
     public Item get(int index) {
+        if (index < 0 || index >= items.length) {
+            return null;
+        }
         int start;
         if (nextFirst == items.length - 1) {
             start = 0;
